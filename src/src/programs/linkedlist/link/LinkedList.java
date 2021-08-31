@@ -1,5 +1,8 @@
 package src.programs.linkedlist.link;
 
+/**
+ * This is the primary Linked list class, we have to add all the operations here.
+ */
 public class LinkedList {
     Node head;
     Node tail;
