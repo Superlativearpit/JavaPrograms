@@ -6,6 +6,7 @@ package src.programs.linkedlist.link;
 public class LinkedList {
     Node head;
     Node tail;
+
     class Node {
         int data;
         Node next;
@@ -22,9 +23,10 @@ public class LinkedList {
         newNode.next = head;
         head = newNode;
     }
+
     public void print() {
-        for(Node current = head; current != null; current = current.next) {
-            System.out.print(current.data+", ");
+        for (Node current = head; current != null; current = current.next) {
+            System.out.print(current.data + ", ");
         }
         System.out.println();
     }
@@ -49,7 +51,6 @@ public class LinkedList {
 
         System.out.println(head1.data);
         System.out.println(head2.data);
-
 
 
     }
