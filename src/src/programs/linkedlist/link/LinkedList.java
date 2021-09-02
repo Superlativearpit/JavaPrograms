@@ -31,27 +31,71 @@ public class LinkedList {
         System.out.println();
     }
 
+    public Node merge(Node head1, Node head2) {
+        if(head1.next == null) {
+            head1.next = head2;
+            return head1;
+        }
+        Node current1 = null;
+        Node current2 = null;
+        Node next1 = null;
+        Node next2 = null;
 
+        if(head1.data < head2.data) {
+            current1 = head1;
+            current2 = head2;
+            next1 = head1.next;
+            next2 = head2.next;
+        } else {
+            current1 = head2;
+            current2 = head1;
+            next1 = head2.next;
+            next2 = head1.next;
+        }
+         while(next1 != null && current2 != null) {
+             if(current2.data >= current1.data && current2.data <= next1.data) {
+                 next2 = current2.next;
+                 current1.next = current2;
+                 current2.next = next1;
+                 current1 = current2;
+                 current2 = next2;
+             } else {
+                 if(next1.next != null) {
+                     next1 = next1.next;
+                     current1 = current1.next;
+                 } else {
+                     next1.next = current2;
+                     return head1;
+                 }
+             }
+         }
+         return head1;
+    }
     public static void main(String args[]) {
         LinkedList l1 = new LinkedList();
         LinkedList l2 = new LinkedList();
 
-        l1.insertOnFront(9);
-        l1.insertOnFront(5);
-        l1.insertOnFront(3);
+        l1.insertOnFront(30);
+        l1.insertOnFront(21);
+        l1.insertOnFront(20);
+        l1.insertOnFront(10);
+        l1.insertOnFront(1);
         Node head1 = l1.head;
 
-        l2.insertOnFront(10);
+        l2.insertOnFront(22);
+        l2.insertOnFront(20);
         l2.insertOnFront(4);
+        l2.insertOnFront(3);
         l2.insertOnFront(2);
         Node head2 = l2.head;
 
         l1.print();
         l2.print();
 
-        System.out.println(head1.data);
-        System.out.println(head2.data);
+        //System.out.println(head1.data);
+        //System.out.println(head2.data);
 
-
+        l1.merge(l1.head, l2.head);
+        l1.print();
     }
 }
