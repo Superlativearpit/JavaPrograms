@@ -71,6 +71,39 @@ public class LinkedList {
          }
          return head1;
     }
+
+    public Node merge1(Node head1, Node head2) {
+        Node temp = new Node(0);
+        Node prev = temp;
+
+        Node l1 = null;
+        Node l2 = null;
+
+        if(head1.data < head2.data) {
+            l1 = head1;
+            l2 = head2;
+        } else {
+            l1 = head2;
+            l2 = head1;
+        }
+
+        Node c1 = l1;
+        Node c2 = l2;
+
+        while(c1 != null && c2 != null) {
+            if(c1.data < c2.data) {
+                prev.next = c1;
+                c1 = c1.next;
+            } else {
+                prev.next = c2;
+                c2 = c2.next;
+            }
+            prev = prev.next;
+        }
+        prev.next = c1 != null ? c1 : c2;
+        return head1;
+    }
+
     public static void main(String args[]) {
         LinkedList l1 = new LinkedList();
         LinkedList l2 = new LinkedList();
@@ -95,7 +128,7 @@ public class LinkedList {
         //System.out.println(head1.data);
         //System.out.println(head2.data);
 
-        l1.merge(l1.head, l2.head);
+        l1.merge1(l1.head, l2.head);
         l1.print();
     }
 }
