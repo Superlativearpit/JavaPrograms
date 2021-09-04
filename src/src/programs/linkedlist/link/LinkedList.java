@@ -32,7 +32,7 @@ public class LinkedList {
     }
 
     public Node merge(Node head1, Node head2) {
-        if(head1.next == null) {
+        if (head1.next == null) {
             head1.next = head2;
             return head1;
         }
@@ -41,7 +41,7 @@ public class LinkedList {
         Node next1 = null;
         Node next2 = null;
 
-        if(head1.data < head2.data) {
+        if (head1.data < head2.data) {
             current1 = head1;
             current2 = head2;
             next1 = head1.next;
@@ -52,34 +52,41 @@ public class LinkedList {
             next1 = head2.next;
             next2 = head1.next;
         }
-         while(next1 != null && current2 != null) {
-             if(current2.data >= current1.data && current2.data <= next1.data) {
-                 next2 = current2.next;
-                 current1.next = current2;
-                 current2.next = next1;
-                 current1 = current2;
-                 current2 = next2;
-             } else {
-                 if(next1.next != null) {
-                     next1 = next1.next;
-                     current1 = current1.next;
-                 } else {
-                     next1.next = current2;
-                     return head1;
-                 }
-             }
-         }
-         return head1;
+        while (next1 != null && current2 != null) {
+            if (current2.data >= current1.data && current2.data <= next1.data) {
+                next2 = current2.next;
+                current1.next = current2;
+                current2.next = next1;
+                current1 = current2;
+                current2 = next2;
+            } else {
+                if (next1.next != null) {
+                    next1 = next1.next;
+                    current1 = current1.next;
+                } else {
+                    next1.next = current2;
+                    return head1;
+                }
+            }
+        }
+        return head1;
     }
 
     public Node merge1(Node head1, Node head2) {
+        if (head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+
         Node temp = new Node(0);
         Node prev = temp;
 
         Node l1 = null;
         Node l2 = null;
 
-        if(head1.data < head2.data) {
+        if (head1.data < head2.data) {
             l1 = head1;
             l2 = head2;
         } else {
@@ -90,8 +97,8 @@ public class LinkedList {
         Node c1 = l1;
         Node c2 = l2;
 
-        while(c1 != null && c2 != null) {
-            if(c1.data < c2.data) {
+        while (c1 != null && c2 != null) {
+            if (c1.data < c2.data) {
                 prev.next = c1;
                 c1 = c1.next;
             } else {
@@ -100,7 +107,12 @@ public class LinkedList {
             }
             prev = prev.next;
         }
-        prev.next = c1 != null ? c1 : c2;
+        if (c1 != null) {
+            prev.next = c1;
+        } else {
+            prev.next = c2;
+        }
+        //prev.next = c1 != null ? c1 : c2;
         return head1;
     }
 
@@ -108,12 +120,15 @@ public class LinkedList {
         LinkedList l1 = new LinkedList();
         LinkedList l2 = new LinkedList();
 
+
+        l1.insertOnFront(31);
         l1.insertOnFront(30);
         l1.insertOnFront(21);
         l1.insertOnFront(20);
         l1.insertOnFront(10);
         l1.insertOnFront(1);
         Node head1 = l1.head;
+
 
         l2.insertOnFront(22);
         l2.insertOnFront(20);
