@@ -116,6 +116,13 @@ public class LinkedList {
         return head1;
     }
 
+    public Node alternateDelete(Node head1) {
+        Node current = head1;
+        Node current1 = head1.next;
+
+        return head1;
+    }
+
     public static void main(String args[]) {
         LinkedList l1 = new LinkedList();
         LinkedList l2 = new LinkedList();
@@ -144,6 +151,8 @@ public class LinkedList {
         //System.out.println(head2.data);
 
         l1.merge1(l1.head, l2.head);
+        l1.print();
+        l1.alternateDelete(l1.head);
         l1.print();
     }
 }
